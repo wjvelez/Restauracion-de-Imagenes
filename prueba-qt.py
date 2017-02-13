@@ -1,18 +1,26 @@
-
 import sys
-import numpy as np
-import cv2
-from PyQt4 import QtGui
+from PyQt4 import QtGui, QtCore
 
 class Window(QtGui.QMainWindow):
 
     def __init__(self):
         super(Window, self).__init__()
         self.setGeometry(50, 50, 500, 300)
-        self.setWindowTitle("Restaurador de Imagenes")
+        self.setWindowTitle("PyQT tuts!")
         self.setWindowIcon(QtGui.QIcon('pythonlogo.png'))
+        self.home()
+
+    def home(self):
+        btn = QtGui.QPushButton("Cargar", self)
+        btn.clicked.connect(QtCore.QCoreApplication.instance().quit)
+        btn.resize(100,30)
+        btn.move(200,200)
         self.show()
 
-app = QtGui.QApplication(sys.argv)
-GUI = Window()
-sys.exit(app.exec_())
+        
+def run():
+    app = QtGui.QApplication(sys.argv)
+    GUI = Window()
+    sys.exit(app.exec_())
+
+run()
