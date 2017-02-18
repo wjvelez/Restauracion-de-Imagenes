@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -9,24 +12,51 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>670</width>
-    <height>482</height>
+    <width>960</width>
+    <height>400</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>960</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>960</width>
+    <height>400</height>
+   </size>
+  </property>
   <property name="acceptDrops">
-   <bool>true</bool>
+   <bool>false</bool>
   </property>
   <property name="windowTitle">
    <string>Restaurador</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
    <widget class="QPushButton" name="btn_cargar">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>99</width>
-      <height>27</height>
+      <width>101</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -34,13 +64,28 @@
     </property>
    </widget>
    <widget class="QListWidget" name="listWidget">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>50</y>
       <width>211</width>
-      <height>221</height>
+      <height>341</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="whatsThis">
+     <string/>
+    </property>
+    <property name="accessibleName">
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_visualizar">
@@ -49,7 +94,7 @@
       <x>120</x>
       <y>10</y>
       <width>101</width>
-      <height>27</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -59,9 +104,9 @@
    <widget class="QComboBox" name="cb_filtros">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>280</y>
-      <width>211</width>
+      <x>450</x>
+      <y>10</y>
+      <width>261</width>
       <height>31</height>
      </rect>
     </property>
@@ -100,28 +145,121 @@
    <widget class="QPushButton" name="btn_aplicar">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>370</y>
-      <width>211</width>
-      <height>27</height>
+      <x>730</x>
+      <y>10</y>
+      <width>101</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
      <string>Aplicar</string>
     </property>
    </widget>
+   <widget class="QLabel" name="lbl_imDeg">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>50</y>
+      <width>340</width>
+      <height>340</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::WinPanel</enum>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="text">
+     <string>Imagen de Entrada</string>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="indent">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_imRes">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>50</y>
+      <width>340</width>
+      <height>340</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::WinPanel</enum>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="midLineWidth">
+     <number>0</number>
+    </property>
+    <property name="text">
+     <string>Imagen Restaurada</string>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="indent">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_guardar">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>10</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Guardar</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_filtro">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>10</y>
+      <width>68</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Filtro:</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>10</y>
+      <width>31</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="lineWidth">
+     <number>2</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>670</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
