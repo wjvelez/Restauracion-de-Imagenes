@@ -3,10 +3,10 @@ from PyQt4 import QtCore
 import sys  # We need sys so that we can pass argv to QApplication
 
 import interfaz  # This file holds our MainWindow and all interfaz related things
-
+import cv2
 # it also keeps events etc that we defined in Qt designer
 import os  # For listing directory methods
-
+import filtros_espaciales as fil_esp
 
 class ExampleApp(QtGui.QMainWindow, interfaz.Ui_MainWindow):
     def __init__(self):
@@ -21,14 +21,25 @@ class ExampleApp(QtGui.QMainWindow, interfaz.Ui_MainWindow):
         #self.ListWidget.__init__(self) # In case there are any existing elements in the list
         self.listWidget.itemClicked.connect(self.item_click)
         self.btn_visualizar.clicked.connect(self.ver_im)
+        self.btn_guardar.clicked.connect(self.guardar_im)
         self.imSelec = ''
         self.algoritmo = ''
         self.btn_aplicar.clicked.connect(self.selec_algortimo)
         self.ruta = ''
-        self.formatos = ['png', 'jpeg', 'jpg', 'gif', 'bmp', 'tiff']
-        
+        self.formatos = ['png', 'jpeg', 'jpg', 'gif', 'bmp', 'tiff']       
 
-
+	#guardar
+    def guardar_im(self):
+    	nombre = ''
+        im = self.imSelec
+        print(im)
+        print ('nombre de archivo: ', nombre)
+        alg = self.algoritmo
+        print('algoritmo', alg)
+        nombre = nombre + alg + '-res-' + im
+        print ('nombre de archivo: ', nombre)
+       	cv2.imwrite(nombre, self.imres)
+	
     #muestra un listado de las imagenes
     def leer_im(self):
         self.listWidget.clear() # In case there are any existing elements in the list
@@ -56,14 +67,53 @@ class ExampleApp(QtGui.QMainWindow, interfaz.Ui_MainWindow):
         self.lbl_imDeg.setPixmap(QtGui.QPixmap(self.ruta+self.imSelec))
         self.lbl_imDeg.show()
 
-	
 
+	
     #selecciona el algoritmo de restauracion a utilizar
     def selec_algortimo(self):
-    	algoritmo = self.cb_filtros.currentText()
+    	algoritmo = str(self.cb_filtros.currentText())
     	self.algoritmo = algoritmo
-    	self.label_algoritmo.setText(' '+ algoritmo)
-    	print (algoritmo)
+    	print('algoritmo escogido', algoritmo)
+    	#self.label_algoritmo.setText(' '+ algoritmo)
+    	img = self.ruta+self.imSelec
+    	im_deg = cv2.imread(img, 1)
+    	filtro = 0
+    	#print (im_deg)
+    	if algoritmo == 'mediano':
+    		print ('aplicando -- mediano')
+    		im_res = fil_esp.mediano(im_deg)
+    	elif algoritmo == 'maximo':
+	    	print ('aplicando -- maximo')
+    		im_res = fil_esp.maximo(im_deg)
+    	elif algoritmo == 'minimo':
+	    	print ('aplicando -- minimo')
+    		im_res = fil_esp.minimo(im_deg)
+    	elif algoritmo == 'medioAritmetico':
+	    	print ('aplicando -- medioAritmetico')
+    		im_res = fil_esp.medioAritmetico(im_deg)
+    	elif algoritmo == 'puntoMedio':
+	    	print ('aplicando -- puntoMedio')
+    		im_res = fil_esp.puntoMedio(im_deg)
+    	elif algoritmo == 'medioContraHarmonico':
+    		print ('aplicando -- medioContraHarmonico')
+    		im_res = fil_esp.medioContraHarmonico(im_deg)
+    	else:
+    		print ('seleccione un filtro')
+    		filtro = 1
+
+    	if filtro == 0:
+    		print('imagen restaurada')
+			#convertir una imagen cv2 en formato para Pixmap
+	    	height, width, channel = im_res.shape
+    		bytesPerLine = 3 * width
+	    	qImg = QtGui.QImage(im_res, width, height, bytesPerLine, QtGui.QImage.Format_RGB888)
+    		self.lbl_imRes.setPixmap(QtGui.QPixmap(qImg))
+	    	self.lbl_imRes.show()
+	    	self.imres = im_res
+	
+	
+		
+		
     	
 
 def main():

@@ -47,7 +47,7 @@ def mediano(frame):
 
 def maximo(frame):
 	mask = []
-	fil, col = frame.shape
+	fil, col, can = frame.shape
 	print dim
 	for f in range(fil-dim+1):
 		for c in range(col-dim+1):
@@ -59,7 +59,7 @@ def maximo(frame):
 
 def minimo(frame):
 	mask = []
-	fil, col = frame.shape
+	fil, col, can = frame.shape
 	
 	for f in range(fil-dim+1):
 		for c in range(col-dim+1):
@@ -71,7 +71,7 @@ def minimo(frame):
 
 def medioAritmetico(frame):
 	mask = []
-	fil, col = frame.shape
+	fil, col, can = frame.shape
 
 	for f in range(fil-dim+1):
 		for c in range(col-dim+1):
@@ -83,7 +83,7 @@ def medioAritmetico(frame):
 
 def puntoMedio(frame):
 	mask = []
-	fil, col = frame.shape
+	fil, col, can = frame.shape
 	result = frame.copy()
 	for f in range(fil-dim+1):
 		for c in range(col-dim+1):
@@ -97,7 +97,7 @@ def puntoMedio(frame):
 
 def medioContraHarmonico(frame):
 	mask = []
-	fil, col = frame.shape
+	fil, col, can = frame.shape
 	R=2
 	result = frame.copy()
 	for f in range(fil-dim+1):
@@ -195,47 +195,5 @@ def gausiano(frame):
 
 	return mezcla
 				
-
-
 dim = 3
-op = 0
-while op != 6:
-	print "Generar ruido"
-	print "1. Uniforme"
-	print "2. Gausiano"
-	print "3. Sal"
-	print "4. Pimienta"
-	print "5. Sal y Pimienta"
-	print "6. Salir"
-	op1 = input("Elija el tipo de ruido: ")
-
-	print "Elegir filtro"
-	print "1. Mediano"
-	print "2. Maximo"
-	print "3. Minimo"
-	print "4. Punto Medio"
-	print "5. Medio Aritmetico"
-	print "6. Medio Contra-Harmonico"
-	op2 = input("Elija el tipo de filtro: ")
-
-	if op1 >= 1 and op1 < 6:
-		filtrar(op1, op2)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

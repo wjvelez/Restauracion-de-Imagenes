@@ -112,35 +112,39 @@
     </property>
     <item>
      <property name="text">
-      <string>New Item</string>
+      <string>seleccione</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>filtro1</string>
+      <string>mediano</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>filtro2</string>
+      <string>maximo</string>
      </property>
     </item>
-   </widget>
-   <widget class="QLabel" name="label_algoritmo">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>330</y>
-      <width>211</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="acceptDrops">
-     <bool>true</bool>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
+    <item>
+     <property name="text">
+      <string>minimo</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>medioAritmetico</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>puntoMedio</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>medioContraHarmonico</string>
+     </property>
+    </item>
    </widget>
    <widget class="QPushButton" name="btn_aplicar">
     <property name="geometry">
